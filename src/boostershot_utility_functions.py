@@ -544,8 +544,8 @@ def train_paired(full_train: list, full_test: list, unmatching_files: list, mode
             # label assignment: Real Parent - Real Child: 1
             #                   Real Parent - Generated Child: 0 when using binary crossentropy or -1 when using Wasserstein
             #                   Fake Parent - Real Child: 0 when using binary crossentropy or -1 when using Wasserstein            
-            y_wasser = -1 * np.ones((3 * batch_size, 1))
-            y_wasser[:batch_size, 0] = 1
+            y_wasser = np.ones((3 * batch_size, 1))
+            y_wasser[:batch_size, 0] = -1
             #
             # train discriminator
             discriminator.trainable = True
